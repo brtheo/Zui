@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Lit App</title>
+    <script type="module" src="/src/JuiIcon.ts"></script>
+    <script type="module" src="/src/JuiCheckbox/JuiCheckbox.ts"></script>
+    <script>
+      globalThis.__JUI__ = {iconProvider: {fa:'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/'}}
+    </script>
+    <style>  
+      :root {   
+        font-size: 12px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }   
+      body {
+          font-size: 2rem;
+      }
+      jui-checkbox{
+        margin: 5px;
+      }
+    </style>
+</head>
+<body>
+    <jui-icon name="eye" provider="fa" size="xxxxl"></jui-icon>
+    <jui-icon name="circle" size="xxxl"></jui-icon>
+    <jui-icon name="square" size="xxl"></jui-icon>
+    <jui-icon name="chevron-right" size="xl"></jui-icon>
+    <jui-icon name="chevron-down" size="lg"></jui-icon>
+    <jui-icon name="chevron-left" color="red"></jui-icon>
+    <jui-icon name="chevron-left" size="sm"></jui-icon>
+    <jui-icon name="chevron-up" size="xs"></jui-icon>
+
+    <jui-checkbox>
+      this is a checkbox
+    </jui-checkbox>
+    <jui-checkbox id="listened">
+      this is a listened checkbox
+    </jui-checkbox>
+    <jui-checkbox transition disabled checked>
+      this is a disabled checkbox
+    </jui-checkbox>
+    <jui-checkbox transition >
+      this is a checkbox with transition
+    </jui-checkbox>
+    <jui-checkbox transition style="--juiCheckboxBorderRad: 3px">
+      this is a rounded checkbox
+    </jui-checkbox>
+    <jui-checkbox 
+      transition 
+      style="
+        --juiCheckboxAccentColor: teal;
+        --juiCheckboxThickness: 2px;
+        --juiCheckboxBorderRad: 200vmax;
+        --juiIconSize: .75rem">
+      this is a styled checkbox
+    </jui-checkbox>
+    <jui-checkbox checked>
+      this is a checkbox with a different icon
+      <jui-icon name="check-outline" slot="icon" size="xs" color="blue"></jui-icon>
+    </jui-checkbox>
+    <jui-checkbox transition style="--juiCheckboxAccentColor: magenta;  --juiCheckboxBorderRad: 30% 70% 70% 30% / 30% 30% 70% 70% ">
+      this is a weird checkbox
+      <jui-icon name="emoticon-poop" slot="icon" size="xs" ></jui-icon>
+    </jui-checkbox>
+    <script>
+      document.querySelector('#listened').addEventListener('change',e => {
+        console.log('i listen ! Am i checked ?', e.currentTarget.checked)
+      })
+    </script>
+</body>
+</html>
