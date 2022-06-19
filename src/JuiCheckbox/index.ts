@@ -1,4 +1,4 @@
-import { html, css, unsafeCSS, LitElement, TemplateResult, CSSResult } from 'lit'
+import { html, LitElement, TemplateResult, CSSResult } from 'lit'
 import { customElement, property } from 'lit/decorators.js'	
 import {classMap} from 'lit/directives/class-map.js';
 import { CSSVar, flagPropsToStyles } from '../shared/utils'
@@ -9,7 +9,13 @@ declare global {
     'jui-checkbox': JuiCheckbox
   }
 }
-
+/**
+ * Checkbox input component
+ * @prop {Boolean} `checked` indicates the state of the component is in
+ * @prop {Boolean} `transition` flag to use or not css `transition` between state changes
+ * @prop {Boolean} `disabled` flag to disable or not the input
+ * @fires JuiCheckbox#change
+ */
 @customElement('jui-checkbox')
 export class JuiCheckbox extends LitElement {
   @property({ reflect: true , type: Boolean})
@@ -19,25 +25,32 @@ export class JuiCheckbox extends LitElement {
   @property({ reflect: true , type: Boolean})
   disabled: Boolean = false
 
-  constructor() {
-    super()
-  }
-
+  /**
+   * Sets accessibility attributes and listener
+   */
   connectedCallback() {
     super.connectedCallback()
     this.setAttribute('role','checkbox')
     this.setAttribute('aria-checked',`${this.checked}`)
     this.setAttribute('aria-disabled',`${this.disabled}`)   
-    this.disabled ? this.removeEventListener('click', this.toggleCheck) : this.addEventListener('click',this.toggleCheck)
+    this.disabled ? this.removeEventListener<'click'>('click', this.toggleCheck) : this.addEventListener<'click'>('click',this.toggleCheck)
   }
 
+  /**
+   * Fires when the component is clicked
+   * @param e click event
+   */
   toggleCheck(e: Event) {
     e.preventDefault()
     this.checked = !this.checked
     this.setAttribute('aria-checked',`${this.checked}`)
+    /**
+     * Change event.
+     * @event JuiCheckbox#change 
+     * @ype {change}
+     */
     this.dispatchEvent(new Event('change', {}))
   }
-
 
   static override styles: CSSResult = styles
 

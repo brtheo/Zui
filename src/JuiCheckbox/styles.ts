@@ -1,4 +1,4 @@
-import {css, CSSResult, unsafeCSS} from 'lit'
+import {css, CSSResult} from 'lit'
 import { userSelectNone,userSelectText } from '../shared/styles'
 export const styles = css`
 :host{
@@ -19,7 +19,7 @@ export const styles = css`
     border: var(--juiCheckboxThickness) solid var(--juiCheckboxAccentColor);
     border-radius: var(--juiCheckboxBorderRad);
     box-sizing: border-box;
-    ${unsafeCSS(userSelectNone)};
+    ${userSelectNone};
 }
 :host([checked]) {
   background-color: var(--juiCheckboxFillColor);
@@ -40,7 +40,7 @@ label {
   margin-inline-start: calc( var(--juiCheckboxSize) * 2);
   transform: translateX(50%);
   line-height: var(--juiCheckboxSize);
-  ${unsafeCSS(userSelectText)};
+  ${userSelectText};
 } 
 `
 export const flagPropsStyleMap = new Map<string, CSSResult>([
@@ -50,12 +50,15 @@ export const flagPropsStyleMap = new Map<string, CSSResult>([
     }
     .iconTransition {
       transition: filter var(--juiCheckboxTransitionValue) ease;
-    }  
+    }
   `],
   ['disabled', css`
     :host([disabled]) {
       filter: grayscale(1);
       cursor: not-allowed;
+    }
+    label {
+      ${userSelectNone};
     }
   `],
 ])
