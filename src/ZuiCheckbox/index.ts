@@ -1,29 +1,33 @@
 import { html, LitElement, TemplateResult, CSSResult } from 'lit'
 import { customElement, property } from 'lit/decorators.js'	
 import {classMap} from 'lit/directives/class-map.js';
-import { CSSVar, flagPropsToStyles } from '../shared/utils'
-import { styles, flagPropsStyleMap } from './styles';
+import { disabled, iconTransition, rounded, transition } from '../shared/styles';
+import { CSSVar} from '../shared/utils'
+import { styles} from './styles';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'jui-checkbox': JuiCheckbox
+    'zui-checkbox': ZuiCheckbox
   }
 }
 /**
  * Checkbox input component
+ * @prop {String} `icon` indicate the icon to display within the zui-icon component
  * @prop {Boolean} `checked` indicates the state of the component is in
  * @prop {Boolean} `transition` flag to use or not css `transition` between state changes
  * @prop {Boolean} `disabled` flag to disable or not the input
- * @fires JuiCheckbox#change
+ * @fires ZuiCheckbox#change
  */
-@customElement('jui-checkbox')
-export class JuiCheckbox extends LitElement {
+@customElement('zui-checkbox')
+export class ZuiCheckbox extends LitElement {
+  @property({ reflect: true})
+  icon: string = 'check'
   @property({ reflect: true , type: Boolean})
-  checked: Boolean = false
+  checked: boolean = false
   @property({ reflect: true , type: Boolean})
-  transition: Boolean = false
+  transition: boolean = false
   @property({ reflect: true , type: Boolean})
-  disabled: Boolean = false
+  disabled: boolean = false
 
   /**
    * Sets accessibility attributes and listener
@@ -46,23 +50,24 @@ export class JuiCheckbox extends LitElement {
     this.setAttribute('aria-checked',`${this.checked}`)
     /**
      * Change event.
-     * @event JuiCheckbox#change 
-     * @ype {change}
+     * @event ZuiCheckbox#change 
+     * @type {change}
      */
     this.dispatchEvent(new Event('change', {}))
   }
 
-  static override styles: CSSResult = styles
+  static override styles: CSSResult[] = [styles, rounded, disabled, transition, iconTransition]
 
   protected render(): TemplateResult {
-    flagPropsToStyles(['disabled','transition'],this, styles, flagPropsStyleMap)
+    // flagPropsToStyles(['disabled','transition'],this, styles, flagPropsStyleMap)
     return html`
       <label>
         <slot></slot>
       </label>
-      <slot name="icon" class=${classMap({iconTransition: this.transition as boolean})}>
-        <jui-icon name="check" size="sm" color=${CSSVar('--juiIconColor', this)} ></jui-icon>
-      </slot>
+      <zui-icon 
+        name="${this.icon}"
+        class=${classMap({iconTransition: this.transition})}
+        color=${CSSVar('--zuiIconColor', this)} ></zui-icon>
     `
   }
 }

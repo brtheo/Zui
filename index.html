@@ -5,9 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Lit App</title>
-    <script type="module" src="/src/JuiTheme.ts"></script>
-    <script type="module" src="/src/JuiIcon"></script>
-    <script type="module" src="/src/JuiCheckbox"></script>
+    <script type="module" src="/src/ZuiTheme.ts"></script>
+    <script type="module" src="/src/ZuiButton"></script>
+    <script type="module" src="/src/ZuiIcon"></script>
+    <script type="module" src="/src/ZuiCheckbox"></script>
     <script>
       globalThis.__JUI__ = {iconProvider: {fa:'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/'}}
     </script>
@@ -15,61 +16,75 @@
     @import url("https://use.typekit.net/zuz7gbu.css");
       :root {   
         font-size: 12px;
-        font-family: 'Quicksand', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family:sans-serif, 'Quicksand', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       }   
       body {
-          font-size: 2rem;
+        font-size: 2rem;
+        zoom: 100%;
       }
-      jui-checkbox{
+      zui-checkbox{
         margin: 5px;
       }
     </style>
 </head>
 <body>
-    <jui-icon name="eye" provider="fa" size="xxxxl"></jui-icon>
-    <jui-icon name="circle" size="xxxl"></jui-icon>
-    <jui-icon name="square" size="xxl"></jui-icon>
-    <jui-icon name="chevron-right" size="xl"></jui-icon>
-    <jui-icon name="chevron-down" size="lg"></jui-icon>
-    <jui-icon name="chevron-left" color="red"></jui-icon>
-    <jui-icon name="chevron-left" size="sm"></jui-icon>
-    <jui-icon name="chevron-up" size="xs"></jui-icon>
+  <zui-button>button</zui-button>
+  <zui-button class="rounded">rounded</zui-button>
+  <zui-button transition>transition</zui-button>
+  <zui-button class="rounded outlined">outlined</zui-button>
+  <zui-button disabled>disabled</zui-button>
+  <zui-button iconBefore="account">with icon</zui-button>
+  <zui-button iconAfter="account">with icon</zui-button>
+  <zui-button icon="account" class="circle"></zui-button>
+    <zui-icon name="fa#eye" size="xxxxl"></zui-icon>
+    <zui-icon name="circle" size="xxxl"></zui-icon>
+    <zui-icon name="square" size="xxl"></zui-icon>
+    <zui-icon name="chevron-right" size="xl"></zui-icon>
+    <zui-icon name="chevron-down" size="lg"></zui-icon>
+    <zui-icon name="chevron-left" color="red"></zui-icon>
+    <zui-icon name="chevron-left" size="sm"></zui-icon>
+    <zui-icon name="chevron-up" size="xs"></zui-icon>
 
-    <jui-checkbox>
+    <zui-checkbox>
       this is a checkbox
-    </jui-checkbox>
-    <jui-checkbox id="listened">
+    </zui-checkbox>
+    <zui-checkbox id="listened">
       this is a listened checkbox
-    </jui-checkbox>
-    <jui-checkbox transition disabled checked>
+    </zui-checkbox>
+    <zui-checkbox transition disabled checked>
       this is a disabled checkbox
-    </jui-checkbox>
-    <jui-checkbox transition >
+    </zui-checkbox>
+    <zui-checkbox transition >
       this is a checkbox with transition
-    </jui-checkbox>
-    <jui-checkbox transition style="--juiCheckboxBorderRad: 3px">
+    </zui-checkbox>
+    <zui-checkbox transition class="rounded">
       this is a rounded checkbox
-    </jui-checkbox>
-    <jui-checkbox 
+    </zui-checkbox>
+    <zui-checkbox 
       transition 
       style="
-        --juiCheckboxAccentColor: teal;
-        --juiCheckboxThickness: 2px;
-        --juiCheckboxBorderRad: 200vmax;
-        --juiIconSize: .75rem">
+        --zuiCheckboxAccentColor: teal;
+        --zuiCheckboxThickness: 2px;
+        --zuiCheckboxRadius: 200vmax;
+        --zuiIconSize: .75rem">
       this is a styled checkbox
-    </jui-checkbox>
-    <jui-checkbox checked>
+    </zui-checkbox>
+    <zui-checkbox checked
+    style="--zuiIconSize: 1.5rem"
+    icon="check-outline">
       this is a checkbox with a different icon
-      <jui-icon name="check-outline" slot="icon" size="xs" color="blue"></jui-icon>
-    </jui-checkbox>
-    <jui-checkbox transition style="--juiCheckboxAccentColor: magenta;  --juiCheckboxBorderRad: 30% 70% 70% 30% / 30% 30% 70% 70% ">
+    </zui-checkbox>
+    <zui-checkbox transition style="--zuiCheckboxAccentColor: magenta;  --zuiCheckboxRadius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    --zuiIconSize: 1rem"
+    icon="emoticon-poop">
       this is a weird checkbox
-      <jui-icon name="emoticon-poop" slot="icon" size="xs" ></jui-icon>
-    </jui-checkbox>
+    </zui-checkbox>
     <script>
       document.querySelector('#listened').addEventListener('change',e => {
         console.log('i listen ! Am i checked ?', e.currentTarget.checked)
+      })
+      document.querySelector('zui-button').addEventListener('click',e => {
+        console.log('i listen ! Am i checked ?')
       })
     </script>
 </body>
