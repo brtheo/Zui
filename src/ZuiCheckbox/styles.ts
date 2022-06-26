@@ -4,7 +4,7 @@ export const styles = css`
 :host{
     --zuiCheckboxSize: 1.5rem;
     --zuiCheckboxThickness: 1px;
-    --zuiCheckboxRadius: var(--zuiRadius);
+    --zuiCheckboxRadius: var(--useZuiRadius);
     --zuiCheckboxAccentColor:  #325cff;
     --zuiCheckboxFillColor: var(--zuiCheckboxAccentColor);
     --zuiIconColor: #d9dde9;
@@ -19,6 +19,8 @@ export const styles = css`
     border: var(--zuiCheckboxThickness) solid var(--zuiCheckboxAccentColor);
     border-radius: var(--zuiCheckboxRadius);
     box-sizing: border-box;
+    transition: background-color var(--useZuiEase),
+                filter var(--useZuiEase);
     ${userSelectNone};
 }
 :host([checked]) {

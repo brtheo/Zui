@@ -1,7 +1,7 @@
 import { html, LitElement, TemplateResult } from "lit"
 import { customElement, property } from "lit/decorators.js"
 import {when} from "lit/directives/when.js"
-import { circle, disabled, outlined, rounded, transition } from "../shared/styles"
+import { disabled, fab, outlined, rounded, transition } from "../shared/styles"
 import { styles } from "./styles"
 
 declare global {
@@ -27,7 +27,7 @@ export default class ZuiButton extends LitElement {
     this.setAttribute('aria-disabled',`${this.disabled}`)       
   }
 
-  static override styles = [styles, rounded, outlined, disabled, transition, circle]
+  static override styles = [styles, rounded, outlined, disabled, transition, fab]
   render(): TemplateResult {
     return html`
       ${ when(this.iconBefore !== undefined,

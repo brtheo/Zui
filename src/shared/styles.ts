@@ -12,6 +12,7 @@ export const disabled = css`
 :host([disabled]) {
   filter: grayscale(1);
   cursor: not-allowed;
+  box-shadow: none;
 }
 :host(:not([disabled]):hover){
   filter: contrast(150%);
@@ -22,31 +23,36 @@ export const disabled = css`
 `
 export const transition = css`
 :host([transition]) {
-  transition: background-color var(--zuiTransitionValue,.125s) ease,
-              filter var(--zuiTransitionValue, .125s) ease;
+  --useZuiEase: var(--zuiEase);
 }
 `
 export const iconTransition = css`
 :host([transition]) .iconTransition {
-  transition: filter var(--zuiTransitionValue,.125s) ease;
+  --useZuiEase: var(--zuiEase);
 }
 `
 export const outlined = css`
-:host(.outlined) {
-  --zuiBorderThickness: 2px;
+:host([outlined]) {
+  --useZuiBorderThickness: 2px;
   --zuiAccent: #325cff;
-  --zuiForeground: var(--zuiAccent);
-  --zuiPrimary: transparent;
+  --useZuiForeground: var(--zuiAccent);
+  --useZuiPrimary: transparent;
 `
 export const rounded = css`
-:host(.rounded) {
-  --zuiRadius: .25rem;
+:host([rounded]) {
+  --useZuiRadius: .25rem;
 }`
 
-export const circle = css`
-:host(.circle) {
-  --zuiRadius: 200vmax;
-  padding: 1.25rem
+export const fab = css`
+:host([fab]) {
+  --useZuiRadius: 200vmax;
+  padding: 1.25rem;
+}
+:host([fab=sm]) {
+  padding: .75rem;
+}
+:host([fab=xl]) {
+  padding: 1.75rem;
 }`
                     
                     

@@ -17,6 +17,8 @@
       :root {   
         font-size: 12px;
         font-family:sans-serif, 'Quicksand', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        --zuiTransitionValue: .125s;
+        --zuiEase: var(--zuiTransitionValue) ease;
       }   
       body {
         font-size: 2rem;
@@ -29,13 +31,15 @@
 </head>
 <body>
   <zui-button>button</zui-button>
-  <zui-button class="rounded">rounded</zui-button>
+  <zui-button rounded>rounded</zui-button>
   <zui-button transition>transition</zui-button>
-  <zui-button class="rounded outlined">outlined</zui-button>
+  <zui-button rounded outlined>outlined</zui-button>
   <zui-button disabled>disabled</zui-button>
   <zui-button iconBefore="account">with icon</zui-button>
   <zui-button iconAfter="account">with icon</zui-button>
-  <zui-button icon="account" class="circle"></zui-button>
+  <zui-button icon="account" transition fab></zui-button>
+  <zui-button icon="account" fab="sm"></zui-button>
+  <zui-button icon="account" fab="xl"></zui-button>
     <zui-icon name="fa#eye" size="xxxxl"></zui-icon>
     <zui-icon name="circle" size="xxxl"></zui-icon>
     <zui-icon name="square" size="xxl"></zui-icon>
@@ -57,7 +61,7 @@
     <zui-checkbox transition >
       this is a checkbox with transition
     </zui-checkbox>
-    <zui-checkbox transition class="rounded">
+    <zui-checkbox transition rounded>
       this is a rounded checkbox
     </zui-checkbox>
     <zui-checkbox 
