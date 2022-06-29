@@ -7,9 +7,13 @@ export const styles = css`
   --zuiButtonForeground: var(--useZuiForeground, #e8e9ee);
   --zuiButtonBorderThickness: var(--useZuiBorderThickness);
   --zuiButtonBorderColor: var(--useZuiAccent, #325cff);
+  --zuiButtonTransition: var(--useZuiTransition);
   --zuiIconColor: var(--zuiButtonForeground);
+  --zuiButtonPadding: var(--useZuiPadding,
+     var(--zuiPaddingSm) var(--zuiPadding)
+  );
   display: inline-flex;
-  padding: .5rem 1.25rem;
+  padding: var(--zuiButtonPadding);
   font-size: var(--zuiFontM,1.25rem);
   cursor: pointer;
   background: var(--zuiButtonBackground);
@@ -20,8 +24,8 @@ export const styles = css`
   align-items: center;
   align-content: center;
   gap: 5px;
-  box-shadow: 0px 0px 5px -1px black;
-  transition: background-color var(--useZuiEase),
-              filter var(--useZuiEase);
+  box-shadow: 0px 0px 4px -2px black;
+  transition: background-color var(--zuiButtonTransition),
+              filter var(--zuiButtonTransition);
 }
 `

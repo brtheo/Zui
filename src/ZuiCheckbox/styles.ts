@@ -9,6 +9,7 @@ export const styles = css`
     --zuiCheckboxFillColor: var(--zuiCheckboxAccentColor);
     --zuiIconColor: #d9dde9;
     --zuiIconSize: 1.5rem;
+    --zuiButtonTransition: var(--useZuiTransition);
     width: var(--zuiCheckboxSize);
     height: var(--zuiCheckboxSize);
     display: flex;
@@ -19,8 +20,8 @@ export const styles = css`
     border: var(--zuiCheckboxThickness) solid var(--zuiCheckboxAccentColor);
     border-radius: var(--zuiCheckboxRadius);
     box-sizing: border-box;
-    transition: background-color var(--useZuiEase),
-                filter var(--useZuiEase);
+    transition: background-color var(--zuiButtonTransition),
+                filter var(--zuiButtonTransition);
     ${userSelectNone};
 }
 :host([checked]) {

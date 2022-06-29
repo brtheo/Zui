@@ -6,7 +6,7 @@
     "target": "ES6",
     "emitDeclarationOnly": true,
     "outDir": "./types",
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

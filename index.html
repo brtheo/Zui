@@ -9,20 +9,16 @@
     <script type="module" src="/src/ZuiButton"></script>
     <script type="module" src="/src/ZuiIcon"></script>
     <script type="module" src="/src/ZuiCheckbox"></script>
+    <script type="module" src="/src/ZuiText"></script>
     <script>
       globalThis.__JUI__ = {iconProvider: {fa:'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/'}}
     </script>
     <style>  
     @import url("https://use.typekit.net/zuz7gbu.css");
-      :root {   
-        font-size: 12px;
-        font-family:sans-serif, 'Quicksand', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        --zuiTransitionValue: .125s;
-        --zuiEase: var(--zuiTransitionValue) ease;
-      }   
+        
       body {
-        font-size: 2rem;
         zoom: 100%;
+        background: gray;
       }
       zui-checkbox{
         margin: 5px;
@@ -30,7 +26,7 @@
     </style>
 </head>
 <body>
-  <zui-button>button</zui-button>
+  <zui-button >button</zui-button>
   <zui-button rounded>rounded</zui-button>
   <zui-button transition>transition</zui-button>
   <zui-button rounded outlined>outlined</zui-button>
@@ -39,57 +35,63 @@
   <zui-button iconAfter="account">with icon</zui-button>
   <zui-button icon="account" transition fab></zui-button>
   <zui-button icon="account" fab="sm"></zui-button>
-  <zui-button icon="account" fab="xl"></zui-button>
-    <zui-icon name="fa#eye" size="xxxxl"></zui-icon>
-    <zui-icon name="circle" size="xxxl"></zui-icon>
-    <zui-icon name="square" size="xxl"></zui-icon>
-    <zui-icon name="chevron-right" size="xl"></zui-icon>
-    <zui-icon name="chevron-down" size="lg"></zui-icon>
-    <zui-icon name="chevron-left" color="red"></zui-icon>
-    <zui-icon name="chevron-left" size="sm"></zui-icon>
-    <zui-icon name="chevron-up" size="xs"></zui-icon>
+  <zui-button transition icon="account" fab="xl"></zui-button>
 
-    <zui-checkbox>
-      this is a checkbox
-    </zui-checkbox>
-    <zui-checkbox id="listened">
-      this is a listened checkbox
-    </zui-checkbox>
-    <zui-checkbox transition disabled checked>
-      this is a disabled checkbox
-    </zui-checkbox>
-    <zui-checkbox transition >
-      this is a checkbox with transition
-    </zui-checkbox>
-    <zui-checkbox transition rounded>
-      this is a rounded checkbox
-    </zui-checkbox>
-    <zui-checkbox 
-      transition 
-      style="
-        --zuiCheckboxAccentColor: teal;
-        --zuiCheckboxThickness: 2px;
-        --zuiCheckboxRadius: 200vmax;
-        --zuiIconSize: .75rem">
-      this is a styled checkbox
-    </zui-checkbox>
-    <zui-checkbox checked
-    style="--zuiIconSize: 1.5rem"
-    icon="check-outline">
-      this is a checkbox with a different icon
-    </zui-checkbox>
-    <zui-checkbox transition style="--zuiCheckboxAccentColor: magenta;  --zuiCheckboxRadius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    --zuiIconSize: 1rem"
-    icon="emoticon-poop">
-      this is a weird checkbox
-    </zui-checkbox>
-    <script>
-      document.querySelector('#listened').addEventListener('change',e => {
-        console.log('i listen ! Am i checked ?', e.currentTarget.checked)
-      })
-      document.querySelector('zui-button').addEventListener('click',e => {
-        console.log('i listen ! Am i checked ?')
-      })
-    </script>
+  <zui-checkbox>
+    this is a checkbox
+  </zui-checkbox>
+  <zui-checkbox id="listened">
+    this is a listened checkbox
+  </zui-checkbox>
+  <zui-checkbox transition disabled checked>
+    this is a disabled checkbox
+  </zui-checkbox>
+  <zui-checkbox transition >
+    this is a checkbox with transition
+  </zui-checkbox>
+  <zui-checkbox transition rounded>
+    this is a rounded checkbox
+  </zui-checkbox>
+  <zui-checkbox 
+    transition 
+    style="
+      --zuiCheckboxAccentColor: teal;
+      --zuiCheckboxThickness: 2px;
+      --zuiCheckboxRadius: 200vmax;
+      --zuiIconSize: .75rem">
+    this is a styled checkbox
+  </zui-checkbox>
+  <zui-checkbox checked
+  style="--zuiIconSize: 1.5rem"
+  icon="check-outline">
+    this is a checkbox with a different icon
+  </zui-checkbox>
+  <zui-checkbox transition style="--zuiCheckboxAccentColor: magenta;  --zuiCheckboxRadius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  --zuiIconSize: 1rem"
+  icon="emoticon-poop">
+    this is a weird checkbox
+  </zui-checkbox>
+  <zui-text xs>Lorem ipsum dolor sit amet</zui-text>
+  <zui-text sm>Lorem ipsum dolor sit amet</zui-text>
+  <zui-text >Lorem ipsum dolor sit amet</zui-text>
+  <zui-text lg>Lorem ipsum dolor sit amet</zui-text>
+  <zui-text xl>Lorem ipsum dolor sit amet</zui-text>
+
+  <zui-icon name="fa#eye" xxxxl></zui-icon>
+  <zui-icon name="circle" xxxl></zui-icon>
+  <zui-icon name="square" xxl></zui-icon>
+  <zui-icon name="chevron-right" xl></zui-icon>
+  <zui-icon name="chevron-down" lg></zui-icon>
+  <zui-icon name="chevron-left" color="red"></zui-icon>
+  <zui-icon name="chevron-left" sm></zui-icon>
+  <zui-icon name="chevron-up" xs></zui-icon>
+  <script>
+    document.querySelector('#listened').addEventListener('change',e => {
+      console.log('i listen ! Am i checked ?', e.currentTarget.checked)
+    })
+    document.querySelector('zui-button').addEventListener('click',e => {
+      console.log('i listen ! Am i checked ?')
+    })
+  </script>
 </body>
 </html>

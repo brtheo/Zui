@@ -1,8 +1,8 @@
-import { html, LitElement, TemplateResult, CSSResult } from 'lit'
+import { html, LitElement, TemplateResult, CSSResultGroup } from 'lit'
 import { customElement, property } from 'lit/decorators.js'	
-import {classMap} from 'lit/directives/class-map.js';
-import { disabled, iconTransition, rounded, transition } from '../shared/styles';
+import { iconTransition } from '../shared/styles';
 import { CSSVar} from '../shared/utils'
+import { Inputable, InputableStyles } from '../traits/inputable';
 import { styles} from './styles';
 
 declare global {
@@ -18,7 +18,9 @@ declare global {
  * @prop {Boolean} `disabled` flag to disable or not the input
  * @fires ZuiCheckbox#change
  */
+
 @customElement('zui-checkbox')
+@Inputable
 export class ZuiCheckbox extends LitElement {
   @property({ reflect: true})
   icon: string = 'check'
@@ -56,17 +58,15 @@ export class ZuiCheckbox extends LitElement {
     this.dispatchEvent(new Event('change', {}))
   }
 
-  static override styles: CSSResult[] = [styles, rounded, disabled, transition, iconTransition]
+  static override styles: CSSResultGroup[] = [InputableStyles, styles, iconTransition]
 
   protected render(): TemplateResult {
-    // flagPropsToStyles(['disabled','transition'],this, styles, flagPropsStyleMap)
     return html`
       <label>
         <slot></slot>
       </label>
       <zui-icon 
         name="${this.icon}"
-        class=${classMap({iconTransition: this.transition})}
         color=${CSSVar('--zuiIconColor', this)} ></zui-icon>
     `
   }

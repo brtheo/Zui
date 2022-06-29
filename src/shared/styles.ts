@@ -1,4 +1,5 @@
 import { css, unsafeCSS } from "lit"
+import { ESize } from "../ZuiTheme"
 
 export const userSelectNone = unsafeCSS`-moz-user-select: none;
                     -webkit-user-select: none;
@@ -8,6 +9,7 @@ export const userSelectText = unsafeCSS`-moz-user-select: text;
                     -webkit-user-select: text;
                     -ms-user-select: text;
                     user-select: text`
+                    
 export const disabled = css`
 :host([disabled]) {
   filter: grayscale(1);
@@ -15,44 +17,64 @@ export const disabled = css`
   box-shadow: none;
 }
 :host(:not([disabled]):hover){
-  filter: contrast(150%);
+  filter: contrast(110%);
 }
 :host([disabled]) * {
   ${userSelectNone};
-}
-`
+}`
+
 export const transition = css`
 :host([transition]) {
-  --useZuiEase: var(--zuiEase);
-}
-`
+  --useZuiTransition: var(--zuiEase);
+}`
+
 export const iconTransition = css`
-:host([transition]) .iconTransition {
-  --useZuiEase: var(--zuiEase);
-}
-`
+:host([transition]) zui-icon{
+  --useZuiTransition: var(--zuiEase);
+}`
+
 export const outlined = css`
 :host([outlined]) {
   --useZuiBorderThickness: 2px;
   --zuiAccent: #325cff;
   --useZuiForeground: var(--zuiAccent);
-  --useZuiPrimary: transparent;
-`
+  --useZuiPrimary: #fefefe;
+}`
+
 export const rounded = css`
 :host([rounded]) {
-  --useZuiRadius: .25rem;
+  --useZuiRadius: var(--zuiRadius);
 }`
 
 export const fab = css`
 :host([fab]) {
-  --useZuiRadius: 200vmax;
-  padding: 1.25rem;
+  --useZuiRadius: var(--zuiCircle);
+  --useZuiPadding: var(--zuiPadding);
 }
 :host([fab=sm]) {
-  padding: .75rem;
+  --useZuiPadding: var(--zuiPaddingSm);
 }
 :host([fab=xl]) {
-  padding: 1.75rem;
+  --useZuiPadding: var(--zuiPaddingXl);
 }`
-                    
-                    
+
+export const focused = css`
+:host(:hover:focus-within), :host(:focus-within) {
+  filter: brightness(110%);
+  outline: none;
+}
+:host([outlined]:hover:focus-within), :host([outlined]:focus-within) {
+  filter: brightness(90%);
+}
+`  
+
+export const sizingFor = (ruleName: string) => css`
+${
+  unsafeCSS(Object.keys(ESize).map( (size: string) => 
+    `:host([${size}]) {
+      ${ruleName}: var(--zui${size});}
+    `
+  ).join(''))
+};
+`
+
