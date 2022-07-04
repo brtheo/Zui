@@ -4,16 +4,14 @@ import { ZuiIcon } from '.'
 export const styles = ($this: ZuiIcon) => css`
 :host {
   --__ZuiIconColor: var(--zuiIconColor, ${unsafeCSS($this.color)} );
-  /* --__ZuiIconSize: var(--zuiIconSize); */
   width: var(--zuiIconSize);
   height: var(--zuiIconSize); 
+  display: flex;
+  place-items: center;
 }
 
 svg {
-    fill: var(--__ZuiIconColor);
-    width: inherit;
-    height: inherit; 
-    display: inline-flex;
-    align-items: center;
-}
-`
+  fill: var(--__ZuiIconColor);
+  width: inherit;
+  height: inherit; 
+}`

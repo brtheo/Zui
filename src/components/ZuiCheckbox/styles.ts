@@ -1,15 +1,17 @@
 import {css} from 'lit'
-import { userSelectNone,userSelectText } from '../shared/styles'
+import { userSelectNone,userSelectText } from '../../shared/styles'
 export const styles = css`
 :host{
-    --zuiCheckboxSize: 1.5rem;
+    --zuiCheckboxSize: var(--zuiSm);
     --zuiCheckboxThickness: 1px;
     --zuiCheckboxRadius: var(--useZuiRadius);
-    --zuiCheckboxAccentColor:  #325cff;
+    --zuiCheckboxAccentColor:  var(--zuiAccentColor);
     --zuiCheckboxFillColor: var(--zuiCheckboxAccentColor);
+    --zuiCheckboxTransition: var(--useZuiTransition);
+
     --zuiIconColor: #d9dde9;
-    --zuiIconSize: 1.5rem;
-    --zuiButtonTransition: var(--useZuiTransition);
+    --zuiIconSize: var(--useZuiIconSize, var(--zuiCheckboxSize));
+    
     width: var(--zuiCheckboxSize);
     height: var(--zuiCheckboxSize);
     display: flex;
@@ -20,8 +22,8 @@ export const styles = css`
     border: var(--zuiCheckboxThickness) solid var(--zuiCheckboxAccentColor);
     border-radius: var(--zuiCheckboxRadius);
     box-sizing: border-box;
-    transition: background-color var(--zuiButtonTransition),
-                filter var(--zuiButtonTransition);
+    transition: background-color var(--zuiCheckboxTransition),
+                filter var(--zuiCheckboxTransition);
     ${userSelectNone};
 }
 :host([checked]) {
@@ -32,6 +34,10 @@ export const styles = css`
 }
 zui-icon {
   filter: opacity(0);
+  place-self: center;
+  align-self: center;
+  justify-self: center;
+  transition: filter var(--zuiCheckboxTransition);
 }
 label {
   font-size: var(--zuiCheckboxSize);

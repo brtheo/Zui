@@ -43,8 +43,18 @@ applyTheme(css`
       font-size: 12px;
       font-family:sans-serif, 'Quicksand', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
+      /* SIZING */
+      ${
+        // get custom properties named --zuiXs/--zuiSm etc...
+        unsafeCSS(Object.keys(ESize).map( (size: string) => 
+          `--zui${size}: ${ESize[size]}`
+        ).join(';'))
+      };
+
+      /* COLORS */
+      --zuiAccentColor: #325cff;
       /* TRANSITION */
-      --zuiTransitionValue: .125s;
+      --zuiTransitionValue: .225s;
       --zuiEase: var(--zuiTransitionValue) ease;
       /* RADIUS */
       --zuiRadius: .25rem;
@@ -54,12 +64,7 @@ applyTheme(css`
       --zuiPaddingSm: .75rem;
       --zuiPadding: 1.25rem;
       --zuiPaddingXl: 1.75rem;
-      /* TYPOGRAPHY */
-      ${
-        // get custom properties named --zuiXs/--zuiSm etc...
-        unsafeCSS(Object.keys(ESize).map( (size: string) => 
-          `--zui${size}: ${ESize[size]}`
-        ).join(';'))
-      };
+      /* BORDER */
+      --zuiBorderThickness: 1px;
     } 
 `)

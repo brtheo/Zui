@@ -24,7 +24,7 @@ export const styles = css`
   align-items: center;
   align-content: center;
   gap: 5px;
-  box-shadow: 0px 0px 4px -2px black;
+  box-shadow: 0px 2px 4px -2px black;
   transition: background-color var(--zuiButtonTransition),
               filter var(--zuiButtonTransition);
 }

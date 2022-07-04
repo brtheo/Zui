@@ -1,6 +1,6 @@
-import {LitElement, html, css, CSSResultGroup} from 'lit'
-import {customElement} from 'lit/decorators.js'
-import { sizingFor } from '../shared/styles'
+import { html, css, CSSResultGroup, LitElement} from 'lit'
+import { customElement } from 'lit/decorators.js'
+import { sizingFor } from '../../shared/styles'
 
 @customElement('zui-text')
 export class ZuiText extends LitElement {
@@ -10,7 +10,7 @@ export class ZuiText extends LitElement {
         display: flex;
         font-size: var(--zuiBase)
       }
-    `, sizingFor('font-size')
+    `, sizingFor(['font-size'])
   ]
 
   render() {

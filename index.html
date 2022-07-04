@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Lit App</title>
     <script type="module" src="/src/ZuiTheme.ts"></script>
-    <script type="module" src="/src/ZuiButton"></script>
-    <script type="module" src="/src/ZuiIcon"></script>
-    <script type="module" src="/src/ZuiCheckbox"></script>
-    <script type="module" src="/src/ZuiText"></script>
+    <script type="module" src="/src/register.ts"></script>
     <script>
       globalThis.__JUI__ = {iconProvider: {fa:'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/'}}
     </script>
@@ -17,10 +14,10 @@
     @import url("https://use.typekit.net/zuz7gbu.css");
         
       body {
-        zoom: 100%;
+        zoom: 200%;
         background: gray;
       }
-      zui-checkbox{
+      zui-checkbox, zui-radio{
         margin: 5px;
       }
     </style>
@@ -31,6 +28,7 @@
   <zui-button transition>transition</zui-button>
   <zui-button rounded outlined>outlined</zui-button>
   <zui-button disabled>disabled</zui-button>
+  <zui-button outlined disabled>disabled outlined</zui-button>
   <zui-button iconBefore="account">with icon</zui-button>
   <zui-button iconAfter="account">with icon</zui-button>
   <zui-button icon="account" transition fab></zui-button>
@@ -71,6 +69,56 @@
   icon="emoticon-poop">
     this is a weird checkbox
   </zui-checkbox>
+
+  <zui-radio transition>This is a radio</zui-radio>
+  <zui-radiogroup rounded title="this is a radio group">
+    <zui-radio transition value="😺">This is a radio</zui-radio>
+    <zui-radio transition value="🙀">This is another radio</zui-radio>
+  </zui-radiogroup>
+
+
+  <zui-select 
+    transition 
+    title="this is a radio group">
+    <zui-option value="😺">This is a radio</zui-option>
+    <zui-option value="🙀">This is another radio</zui-option>
+  </zui-select>
+  <zui-select 
+    icon='check' 
+    transition 
+    multiple 
+    rounded 
+    title="this is a radio group">
+    <zui-option value="😺">This is a radio</zui-option>
+    <zui-option value="🙀">This is another radio</zui-option>
+  </zui-select>
+  <zui-dropdown iconAfter="chevron-down">
+    <span slot="summary">Hello</span>
+    <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam doloremque consequuntur placeat dolorem libero in recusandae iste. Similique ducimus autem aspernatur debitis, dolore labore cumque corrupti voluptatem reiciendis nihil blanditiis.</div>
+  </zui-dropdown>
+  <!-- <zui-radio-group></zui-radio-group>
+  <zui-select>
+    <zui-option></zui-option>
+    <zui-option></zui-option>
+    <zui-option></zui-option>
+  </zui-select>
+  <zui-card></zui-card>
+  <zui-input></zui-input>
+  <zui-text editable></zui-text>
+  <zui-treeview></zui-treeview>
+  <zui-dropdown></zui-dropdown>
+  <zui-toast></zui-toast>
+  <zui-modal></zui-modal>
+  <zui-listview>
+      <zui-listitem></zui-listitem>
+    </zui-listview>
+  Zui object
+  register all method
+  theme 
+  webworker to generate style ? -->
+  
+
+
   <zui-text xs>Lorem ipsum dolor sit amet</zui-text>
   <zui-text sm>Lorem ipsum dolor sit amet</zui-text>
   <zui-text >Lorem ipsum dolor sit amet</zui-text>
@@ -86,11 +134,15 @@
   <zui-icon name="chevron-left" sm></zui-icon>
   <zui-icon name="chevron-up" xs></zui-icon>
   <script>
-    document.querySelector('#listened').addEventListener('change',e => {
+    document.querySelector('zui-radio').addEventListener('change',e => {
       console.log('i listen ! Am i checked ?', e.currentTarget.checked)
     })
     document.querySelector('zui-button').addEventListener('click',e => {
       console.log('i listen ! Am i checked ?')
+    })
+    document.querySelector('zui-radiogroup').addEventListener('change',e => {
+      e.stopImmediatePropagation()
+      console.log(e.currentTarget.value)
     })
   </script>
 </body>

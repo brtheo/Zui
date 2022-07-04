@@ -1,8 +1,8 @@
 import { html, LitElement, TemplateResult } from "lit"
-import { customElement, property } from "lit/decorators.js"
+import { property, customElement} from "lit/decorators.js"
 import { when } from "lit/directives/when.js"
-import { Inputable, InputableStyles } from "../traits/inputable"
-import { fab, outlined, transition } from "../shared/styles"
+import { Inputable, InputableStyles } from "../../traits/inputable"
+import { fab, outlined, transition } from "../../shared/styles"
 import { styles } from "./styles"
 
 declare global {
@@ -14,13 +14,17 @@ declare global {
 
 @customElement('zui-button')
 @Inputable
-export default class ZuiButton extends LitElement {
+export class ZuiButton extends LitElement {
+
   @property({ reflect: true , type: Boolean})
   disabled: boolean = false
+
   @property({reflect: true})
   iconAfter?: string
+
   @property({reflect: true})
   iconBefore?: string
+  
   @property({reflect: true})
   icon?: string
 

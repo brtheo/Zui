@@ -15,6 +15,7 @@ export const disabled = css`
   filter: grayscale(1);
   cursor: not-allowed;
   box-shadow: none;
+  outline: unset;
 }
 :host(:not([disabled]):hover){
   filter: contrast(110%);
@@ -25,11 +26,6 @@ export const disabled = css`
 
 export const transition = css`
 :host([transition]) {
-  --useZuiTransition: var(--zuiEase);
-}`
-
-export const iconTransition = css`
-:host([transition]) zui-icon{
   --useZuiTransition: var(--zuiEase);
 }`
 
@@ -50,6 +46,7 @@ export const fab = css`
 :host([fab]) {
   --useZuiRadius: var(--zuiCircle);
   --useZuiPadding: var(--zuiPadding);
+  box-shadow: 0px 2px 10px -1px black;
 }
 :host([fab=sm]) {
   --useZuiPadding: var(--zuiPaddingSm);
@@ -59,21 +56,29 @@ export const fab = css`
 }`
 
 export const focused = css`
-:host(:hover:focus-within), :host(:focus-within) {
+:host(:not([disabled]):hover:focus-within), :host(:not([disabled]):focus-within) {
   filter: brightness(110%);
   outline: none;
 }
-:host([outlined]:hover:focus-within), :host([outlined]:focus-within) {
+:host([outlined]:not([disabled]):hover:focus-within),
+:host([outlined]:not([disabled]):focus-within) {
   filter: brightness(90%);
 }
-`  
+:host(:not([disabled]):focus) {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: red;
+  outline-offset: 2px;
+}`  
 
-export const sizingFor = (ruleName: string) => css`
+export const sizingFor = (ruleNames: string[]) => css`
 ${
-  unsafeCSS(Object.keys(ESize).map( (size: string) => 
-    `:host([${size}]) {
-      ${ruleName}: var(--zui${size});}
-    `
+  unsafeCSS(Object.keys(ESize).map<string>( size => 
+    ruleNames.map<string>( ruleName => `
+      :host([${size}]) {
+        ${ruleName}: var(--zui${size});
+      }
+    `).join('')
   ).join(''))
 };
 `

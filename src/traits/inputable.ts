@@ -5,7 +5,7 @@ type EVT_DOWN = 'mousedown'|'pointerdown'|'keydown'
 type EVT_UP = 'mouseup'|'pointerup'|'keyup'
 
 const EVT_DOWN  = ['mousedown','pointerdown','keydown']
-const EVT_UP = ['mouseup','pointerup','keyup']
+const EVT_UP = ['mouseup','pointerup','mouseleave']
 
 export const InputableStyles: CSSResultGroup = [rounded, disabled, transition, focused]
 
@@ -15,12 +15,12 @@ export function Inputable<T extends _LitElement>(
 ): T {
   return class extends constructor {
     setFocus = () => {
-      this.tabIndex = 1 
       this.focus()
     }
-    unsetFocus = () => this.removeAttribute('tabindex')
+    unsetFocus = () => this.blur()
     connectedCallback(): void {
       super.connectedCallback()
+      this.tabIndex = 0
       EVT_DOWN.forEach(
         (evt: EVT_DOWN) => this.addEventListener<EVT_DOWN>(evt, this.setFocus)
       )   

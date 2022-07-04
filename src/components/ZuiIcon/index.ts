@@ -1,10 +1,9 @@
-import { html, LitElement, TemplateResult, adoptStyles } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { html, TemplateResult, adoptStyles, LitElement } from 'lit'
+import { property, customElement } from 'lit/decorators.js'
 import { DirectiveResult } from 'lit/directive'
 import { unsafeSVG, UnsafeSVGDirective } from 'lit/directives/unsafe-svg.js'
 import { until } from 'lit/directives/until.js'
-import { sizingFor } from '../shared/styles'
-import { ESizeKeys } from './../ZuiTheme'
+import { sizingFor } from '../../shared/styles'
 import { styles } from './styles'
 
 declare global {
@@ -22,12 +21,13 @@ declare global {
  */
 @customElement('zui-icon')
 export class ZuiIcon extends LitElement {
+  
   @property({ reflect: true })
   name: string
+
   @property({ reflect: true })
   provider: string = 'default'
-  // @property({ reflect: true, type: String })
-  // size: ESizeKeys = 'base'
+
   @property({ reflect: true })
   color?: string
 
@@ -50,7 +50,7 @@ export class ZuiIcon extends LitElement {
     else return unsafeSVG(localStorage.getItem(`icon_${iconName}`))
   }
   protected render(): TemplateResult {
-    adoptStyles(this.renderRoot as ShadowRoot, [styles(this),sizingFor('width'),sizingFor('height')])
+    adoptStyles(this.renderRoot as ShadowRoot, [styles(this),sizingFor(['width','height'])])
     return html`
       ${this.name !== undefined ? until(this.fetchIcon()) : ''}          
     `

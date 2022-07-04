@@ -1,8 +1,7 @@
-import { html, LitElement, TemplateResult, CSSResultGroup } from 'lit'
-import { customElement, property } from 'lit/decorators.js'	
-import { iconTransition } from '../shared/styles';
-import { CSSVar} from '../shared/utils'
-import { Inputable, InputableStyles } from '../traits/inputable';
+import { html, TemplateResult, CSSResultGroup, LitElement } from 'lit'
+import { property, customElement} from 'lit/decorators.js'	
+import { CSSVar} from '../../shared/utils'
+import { Inputable, InputableStyles } from '../../traits/inputable';
 import { styles} from './styles';
 
 declare global {
@@ -18,16 +17,22 @@ declare global {
  * @prop {Boolean} `disabled` flag to disable or not the input
  * @fires ZuiCheckbox#change
  */
-
 @customElement('zui-checkbox')
-@Inputable
+@Inputable 
 export class ZuiCheckbox extends LitElement {
+
   @property({ reflect: true})
   icon: string = 'check'
+
+  @property({ reflect: true }) 
+  value: string = ''
+
   @property({ reflect: true , type: Boolean})
   checked: boolean = false
+
   @property({ reflect: true , type: Boolean})
   transition: boolean = false
+
   @property({ reflect: true , type: Boolean})
   disabled: boolean = false
 
@@ -37,8 +42,8 @@ export class ZuiCheckbox extends LitElement {
   connectedCallback() {
     super.connectedCallback()
     this.setAttribute('role','checkbox')
-    this.setAttribute('aria-checked',`${this.checked}`)
-    this.setAttribute('aria-disabled',`${this.disabled}`)   
+    this.setAttribute('aria-disabled',`${this.disabled}`)
+    this.setAttribute('aria-checked',`${this.checked}`)  
     this.disabled ? this.removeEventListener<'click'>('click', this.toggleCheck) : this.addEventListener<'click'>('click',this.toggleCheck)
   }
 
@@ -55,19 +60,26 @@ export class ZuiCheckbox extends LitElement {
      * @event ZuiCheckbox#change 
      * @type {change}
      */
-    this.dispatchEvent(new Event('change', {}))
+    this.dispatchEvent(new Event('change', {
+      bubbles: true
+    }))
   }
 
-  static override styles: CSSResultGroup[] = [InputableStyles, styles, iconTransition]
+  static override styles: CSSResultGroup[] = [InputableStyles, styles]
 
   protected render(): TemplateResult {
     return html`
+      <div class="box">
+        <zui-icon 
+          name="${this.icon}"
+          color=${CSSVar('--zuiIconColor', this)} >
+        </zui-icon>
+      </div>
       <label>
         <slot></slot>
       </label>
-      <zui-icon 
-        name="${this.icon}"
-        color=${CSSVar('--zuiIconColor', this)} ></zui-icon>
+
     `
   }
 }
+
