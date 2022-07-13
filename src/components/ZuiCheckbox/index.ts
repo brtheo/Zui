@@ -69,12 +69,10 @@ export class ZuiCheckbox extends LitElement {
 
   protected render(): TemplateResult {
     return html`
-      <div class="box">
-        <zui-icon 
-          name="${this.icon}"
-          color=${CSSVar('--zuiIconColor', this)} >
-        </zui-icon>
-      </div>
+      <zui-icon 
+        name="${this.icon}"
+        color=${CSSVar('--zuiIconColor', this)} >
+      </zui-icon>
       <label>
         <slot></slot>
       </label>

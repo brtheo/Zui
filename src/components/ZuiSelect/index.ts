@@ -1,6 +1,9 @@
 import { CSSResultGroup, html} from 'lit'
-import {customElement, property, queryAssignedElements,} from 'lit/decorators.js'
+import { customElement, property, query, queryAssignedElements, state,} from 'lit/decorators.js'
+import { styleMap } from 'lit/directives/style-map.js'
+import { rounded } from '../../shared/styles'
 import { ZuiCheckbox } from '../ZuiCheckbox'
+import { ZuiDropdown } from '../ZuiDropdown'
 import { ZuiRadiogroup } from '../ZuiRadiogroup'
 import { styles } from './styles'
 
@@ -26,10 +29,32 @@ export class ZuiSelect extends ZuiRadiogroup {
   @property({reflect: true})
   icon: string = 'circle'
 
+  @property({reflect: true})
+  thumbIcon: string = 'unfold-more-horizontal'
+
   @queryAssignedElements() $zuiOptions: ZuiOption[]
 
+  @query('zui-dropdown') $zuiDropdown: ZuiDropdown
+
+  @state() parentHeight: number
+
+  connectedCallback() {
+    super.connectedCallback()
+
+    document.addEventListener('_dropdownIntercept', (e: CustomEvent) => {
+      console.log(e.detail)
+      let prev =  e.detail,
+      curr = this.$zuiDropdown.opened
+      if(!prev && curr)
+       this.$zuiDropdown.shrink()
+      else {
+        prev = null
+        curr = null
+      }
+    })
+  }
+
   override handleToggleLogic (){
-    this.$zuiOptions.forEach(e => console.log(e))
   }
 
   firstUpdated(): void {
@@ -39,11 +64,19 @@ export class ZuiSelect extends ZuiRadiogroup {
     else this.handleToggleLogic()
   }
 
-  static styles: CSSResultGroup[] = [ZuiRadiogroup.styles, styles] 
+  static styles: CSSResultGroup[] = [ZuiRadiogroup.styles, styles, rounded] 
 
   render() {
+    const parentHeightStyle = {'--zuiParentHeight': `30px` }
     return html`
-      <slot></slot>
+      <zui-dropdown
+        style=${styleMap(parentHeightStyle)}
+        iconAfter=${this.thumbIcon}
+        ?select=${true}>
+        <span slot="summary">${this.title}</span>
+        <slot></slot>
+      </zui-dropdown>
+      
     `
   }
 }

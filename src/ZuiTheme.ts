@@ -60,6 +60,7 @@ applyTheme(css`
       --zuiRadius: .25rem;
       --zuiCircle: 200vmax;
       /* PADDING */
+      --zuiPaddingXxs: .25rem;
       --zuiPaddingXs: .5rem;
       --zuiPaddingSm: .75rem;
       --zuiPadding: 1.25rem;

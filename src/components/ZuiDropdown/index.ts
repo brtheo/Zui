@@ -1,7 +1,9 @@
-import { html, LitElement, TemplateResult, CSSResultGroup} from 'lit'
+import { html, LitElement, TemplateResult, CSSResultGroup, PropertyValueMap} from 'lit'
 import { customElement, property, query, state } from 'lit/decorators.js'
 import { styles } from './styles'
 import { when } from 'lit/directives/when.js'
+import { classMap } from 'lit/directives/class-map.js'
+import { Inputable, InputableStyles } from '../../traits/inputable'
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -10,6 +12,7 @@ declare global {
 }
 
 @customElement('zui-dropdown')
+@Inputable
 export class ZuiDropdown extends LitElement {
 
   @property({type: Boolean, reflect:true})
@@ -24,14 +27,14 @@ export class ZuiDropdown extends LitElement {
   @property({reflect: true})
   icon?: string
 
+  @property({reflect: true, type: Boolean})
+  select?: boolean = false
+
   @state()
   isClosing: boolean = false
 
   @state()
   isExpanding: boolean = false
-
-  @state()
-  animation: any | null = null
 
   @query('main')
   $summary: HTMLElement
@@ -41,63 +44,64 @@ export class ZuiDropdown extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback()
-      this.setAttribute('role','listbox')
+    this.setAttribute('role','listbox')
+    document.addEventListener('click', (e: Event) =>{ 
+      const path = e.composedPath().map((element: HTMLElement) => element.tagName)
+      this.opened && this.select
+      && (
+        !path.includes('ZUI-SELECT')
+        || !path.includes('ZUI-DROPDOWN')
+      ) ? this.shrink() : null
+      })
   }
 
+
   handleClick(e: Event) {
+   
     e.preventDefault()
-    
-    console.log(this.opened)
     if(this.isClosing || !this.opened) this.open()
     else if (this.isExpanding || this.opened) this.shrink()
     this.opened = !this.opened
     
   }
 
-  shrink() {
-    this.isClosing = true
-    if(this.animation) this.animation.cancel()
-    this.animation = this.$options.animate({
-      transform: ['scaleY(1)','scaleY(0)'],
-      opacity: ['1','0']
-    }, {
-      duration: 200,
-      easing: 'ease-in'
-    })
-    this.animation.onfinish = () => this.handleAnimationFinish(false)
-    this.animation.oncancel= () => this.isClosing = false
-  }
-
+  
   open() {
     this.opened = true
     window.requestAnimationFrame(() => this.expand())
+  }
 
+  shrink() {
+    this.isClosing = true
+    this.$options.classList.add('eraseContent')
+    this.$options.classList.add('animationLeave')
+    this.$options.onanimationend = () => this.handleAnimationFinish(false)
+    this.$options.onanimationcancel = () => this.isClosing = false
   }
 
   expand() {
+    console.log(this.select)
+    if(this.select)document.dispatchEvent(new CustomEvent('_dropdownIntercept', {detail:this.opened}))
     this.isExpanding = true
+    this.$options.classList.add('eraseContent')
     this.$options.style.display = 'flex'
-    if(this.animation) this.animation.cancel()
-    this.animation = this.$options.animate({
-      transform: ['scaleY(0)','scaleY(1)'],
-      opacity: ['0','1']
-    },{
-      duration: 200,
-      easing: 'ease-in'
-    })
-    this.animation.onfinish = () => this.handleAnimationFinish(true)
-    this.animation.oncancel= () => this.isClosing = false
+    this.$options.classList.add('animationEnter')
+    this.$options.onanimationend = () => this.handleAnimationFinish(true)
+    this.$options.onanimationcancel = () => this.isClosing = false
   }
 
   handleAnimationFinish(open: boolean) {
     this.$options.style.display = open ? 'flex' : 'none'  
     this.opened = open
-    this.animation = null
+    // this.zuiAnimation.animation = null
     this.isClosing = false
     this.isExpanding = false
+    this.$options.classList.remove('eraseContent')
+    this.$options.classList.remove('animationEnter')
+    this.$options.classList.remove('animationLeave')
   }
 
-  static override styles: CSSResultGroup[] = [styles]
+  static override styles: CSSResultGroup[] = [InputableStyles, styles]
 
   protected render(): TemplateResult {
     return html`
@@ -113,7 +117,7 @@ export class ZuiDropdown extends LitElement {
           () => html`<zui-icon name=${this.iconAfter as string}></zui-icon>`)
         }
       </main>
-      <aside class="topToBottom">
+      <aside class="topToBottom ${classMap({selectContext: this.select})}">
         <slot></slot>
       </aside>
     `
