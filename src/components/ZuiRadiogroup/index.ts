@@ -24,6 +24,11 @@ export class ZuiRadiogroup extends LitElement {
   @queryAssignedElements({selector: 'zui-radio'}) 
   $zuiRadios: ZuiRadio[]
 
+  connectedCallback(): void {
+    super.connectedCallback()
+    this.setAttribute('role','group')
+  }
+
   /**
    * default logic for a group of {@linkcode ZuiCheckbox}
    * defines the uniqueness of an element marked as `checked`

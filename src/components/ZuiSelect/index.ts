@@ -1,6 +1,7 @@
 import { CSSResultGroup, html} from 'lit'
 import { customElement, property, query, queryAssignedElements, state,} from 'lit/decorators.js'
 import { styleMap } from 'lit/directives/style-map.js'
+import { when } from 'lit/directives/when.js'
 import { rounded } from '../../shared/styles'
 import { ZuiCheckbox } from '../ZuiCheckbox'
 import { ZuiDropdown } from '../ZuiDropdown'
@@ -18,10 +19,16 @@ declare global {
 @customElement('zui-option')
 export class ZuiOption extends ZuiCheckbox {
   static styles: CSSResultGroup[] = [ZuiCheckbox.styles]
+  connectedCallback(): void {
+      super.connectedCallback()
+      this.setAttribute('role','option')
+  }
  }
-
+ 
 @customElement('zui-select')
 export class ZuiSelect extends ZuiRadiogroup {
+
+  @property({reflect: true}) value: string | null = null
 
   @property({reflect: true, type: Boolean})
   multiple: boolean = false
@@ -40,7 +47,7 @@ export class ZuiSelect extends ZuiRadiogroup {
 
   connectedCallback() {
     super.connectedCallback()
-
+    this.setAttribute('role','listbox')
     document.addEventListener('_dropdownIntercept', (e: CustomEvent) => {
       console.log(e.detail)
       let prev =  e.detail,
@@ -73,7 +80,7 @@ export class ZuiSelect extends ZuiRadiogroup {
         style=${styleMap(parentHeightStyle)}
         iconAfter=${this.thumbIcon}
         ?select=${true}>
-        <span slot="summary">${this.title}</span>
+        <span slot="summary">${when(this.value !== null, () => this.value, () => this.title)}</span>
         <slot></slot>
       </zui-dropdown>
       

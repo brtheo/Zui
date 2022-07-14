@@ -81,12 +81,22 @@
 
 
   <zui-select 
+    id="track"
     transition 
     title="this is a radio group"
-    style="--useZuiSelectWidth: 150px">
+    style="--useZuiSelectWidth: 180px">
     <zui-option value="😺">This is a radio</zui-option>
     <zui-option value="🙀">This is another radio</zui-option>
   </zui-select>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <br>
   <zui-select 
     icon='check' 
@@ -154,6 +164,7 @@
       e.stopImmediatePropagation()
       console.log(e.currentTarget.value)
     })
+    document.querySelector('#track').addEventListener('change', e => console.log(e))
   </script>
 </body>
 </html>

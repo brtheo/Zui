@@ -40,7 +40,7 @@ const applyTheme = (appliedCSS: CSSResult) =>
 
 applyTheme(css`
   :root {   
-      font-size: 12px;
+      font-size: 14px;
       font-family:sans-serif, 'Quicksand', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
       /* SIZING */

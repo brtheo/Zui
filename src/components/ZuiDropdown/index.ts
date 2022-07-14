@@ -1,4 +1,4 @@
-import { html, LitElement, TemplateResult, CSSResultGroup, PropertyValueMap} from 'lit'
+import { html, LitElement, TemplateResult, CSSResultGroup} from 'lit'
 import { customElement, property, query, state } from 'lit/decorators.js'
 import { styles } from './styles'
 import { when } from 'lit/directives/when.js'
@@ -44,7 +44,6 @@ export class ZuiDropdown extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback()
-    this.setAttribute('role','listbox')
     document.addEventListener('click', (e: Event) =>{ 
       const path = e.composedPath().map((element: HTMLElement) => element.tagName)
       this.opened && this.select
@@ -55,17 +54,13 @@ export class ZuiDropdown extends LitElement {
       })
   }
 
-
   handleClick(e: Event) {
-   
     e.preventDefault()
     if(this.isClosing || !this.opened) this.open()
     else if (this.isExpanding || this.opened) this.shrink()
     this.opened = !this.opened
-    
   }
 
-  
   open() {
     this.opened = true
     window.requestAnimationFrame(() => this.expand())
@@ -80,7 +75,6 @@ export class ZuiDropdown extends LitElement {
   }
 
   expand() {
-    console.log(this.select)
     if(this.select)document.dispatchEvent(new CustomEvent('_dropdownIntercept', {detail:this.opened}))
     this.isExpanding = true
     this.$options.classList.add('eraseContent')

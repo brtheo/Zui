@@ -1,17 +1,22 @@
 import { css } from "lit";
+import { userSelectNone } from "../../shared/styles";
 
 export const styles = css`
 :host {
   --zuiSelectWidth: var(--useZuiSelectWidth, max-content);
   --zuiSelectDropableWidth: var(--useZuiSelectWidth, -webkit-fill-available);
 }
+:host * {
+  ${userSelectNone};
+}
 :host(:not([multiple])) ::slotted(zui-option) {
   --useZuiRadius: var(--zuiCircle);
-  --useZiIconSvgSize: .55rem;
+  --useZuiIconSvgSize: .60rem;
   --zuiCheckboxThickness: 2px;
   --zuiCheckboxFillColor: transparent;
   --zuiIconColor: var(--zuiAccentColor);
-  --zuiCheckboxAccentColor: #232323;
+  ${userSelectNone};
+  /* --zuiCheckboxAccentColor: #232323; */
 }
 
 :host ::slotted(zui-option) {
