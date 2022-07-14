@@ -2,17 +2,17 @@ import { css } from "lit";
 
 export const styles = css`
 :host {
-  --zuiRadiogroupRadius: var(--useZuiRadius);
-  --zuiRadiogroupBorderThickness: var(--zuiBorderThickness);
-  --zuiRadiogroupBorderStyle: solid;
-  --zuiRaiogroupBorderColor: var(--zuiAccentColor);
-  --zuiRadiogroupBorder:  var(--zuiRadiogroupBorderThickness)
-                          var(--zuiRadiogroupBorderStyle)
-                          var(--zuiRaiogroupBorderColor);
+  --zui-radiogroup-radius: var(--use-zui-radius);
+  --zui-radiogroup-border-thickness: var(--zuiBorderThickness);
+  --zui-radiogroup-border-style: solid;
+  --zui-radiogroup-border-color: var(--zui-accent-color);
+  --zui-radiogroup-border:  var(--zui-radiogroup-border-thickness)
+                          var(--zui-radiogroup-border-style)
+                          var(--zui-radiogroup-border-color);
 }
 fieldset {
-  border: var(--zuiRadiogroupBorder);
-  border-radius: var(--zuiRadiogroupRadius);
+  border: var(--zui-radiogroup-border);
+  border-radius: var(--zui-radiogroup-radius);
 }
 legend::first-letter {
   text-transform: capitalize;

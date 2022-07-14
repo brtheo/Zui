@@ -2,11 +2,11 @@ import { css } from "lit";
 
 export const styles = css`
 :host {
-  --zuiCheckboxRadius: var(--zuiCircle);
-  --useZuiIconSvgSize: .85rem;
-  --zuiCheckboxThickness: 2px;
-  --zuiCheckboxFillColor: transparent;
-  --zuiIconColor: var(--zuiAccentColor);
-  --zuiCheckboxAccentColor: var(--zuiAccentColor);
+  --zui-checkbox-radius: var(--zui-circle);
+  --use-zui-icon-svg-size: .85rem;
+  --zui-checkbox-thickness: 2px;
+  --zui-checkbox-fill-color: transparent;
+  --zui-icon-color: var(--zui-accent-color);
+  --zui-checkbox-accent-color: var(--zui-accent-color);
 }
 `

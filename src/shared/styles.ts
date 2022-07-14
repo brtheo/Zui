@@ -26,33 +26,33 @@ export const disabled = css`
 
 export const transition = css`
 :host([transition]) {
-  --useZuiTransition: var(--zuiEase);
+  --use-zui-transition: var(--zui-ease);
 }`
 
 export const outlined = css`
 :host([outlined]) {
-  --useZuiBorderThickness: 2px;
-  --zuiAccent: #325cff;
-  --useZuiForeground: var(--zuiAccent);
-  --useZuiPrimary: #fefefe;
+  --use-zui-border-thickness: 2px;
+  --zui-accent: #325cff;
+  --use-zui-foreground: var(--zui-accent);
+  --use-zui-primary: #fefefe;
 }`
 
 export const rounded = css`
 :host([rounded]) {
-  --useZuiRadius: var(--zuiRadius);
+  --use-zui-radius: var(--zui-radius);
 }`
 
 export const fab = css`
 :host([fab]) {
-  --useZuiRadius: var(--zuiCircle);
-  --useZuiPadding: var(--zuiPadding);
+  --use-zui-radius: var(--zui-circle);
+  --use-zui-padding: var(--zui-padding);
   box-shadow: 0px 2px 10px -1px black;
 }
 :host([fab=sm]) {
-  --useZuiPadding: var(--zuiPaddingSm);
+  --use-zui-padding: var(--zui-padding-sm);
 }
 :host([fab=xl]) {
-  --useZuiPadding: var(--zuiPaddingXl);
+  --use-zui-padding: var(--zui-padding-xl);
 }`
 
 export const focused = css`
@@ -76,7 +76,7 @@ ${
   unsafeCSS(Object.keys(ESize).map<string>( size => 
     ruleNames.map<string>( ruleName => `
       :host([${size}]) {
-        ${ruleName}: var(--zui${size});
+        ${ruleName}: var(--zui-${size});
       }
     `).join('')
   ).join(''))

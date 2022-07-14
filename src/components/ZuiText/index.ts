@@ -8,7 +8,7 @@ export class ZuiText extends LitElement {
     css`
       :host {
         display: flex;
-        font-size: var(--zuiBase)
+        font-size: var(--zui-base)
       }
     `, sizingFor(['font-size'])
   ]

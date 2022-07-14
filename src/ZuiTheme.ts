@@ -13,14 +13,14 @@ declare global {
 }
 
 export enum ESize {
-  Xs='1rem', 
-  Sm='1.5rem', 
-  Base='2rem',
-  Lg='2.75rem',
-  Xl='3.25rem',
-  Xxl='4rem',
-  Xxxl='7rem',
-  Xxxxl='10rem',
+  xs='1rem', 
+  sm='1.5rem', 
+  base='2rem',
+  lg='2.75rem',
+  xl='3.25rem',
+  xxl='4rem',
+  xxxl='7rem',
+  xxxxl='10rem',
 }
 export type ESizeKeys = keyof typeof ESize
 
@@ -45,26 +45,26 @@ applyTheme(css`
 
       /* SIZING */
       ${
-        // get custom properties named --zuiXs/--zuiSm etc...
+        // get custom properties named --zui-xs/--zui-sm etc...
         unsafeCSS(Object.keys(ESize).map( (size: string) => 
-          `--zui${size}: ${ESize[size]}`
+          `--zui-${size}: ${ESize[size]}`
         ).join(';'))
       };
 
       /* COLORS */
-      --zuiAccentColor: #325cff;
+      --zui-accent-color: #325cff;
       /* TRANSITION */
-      --zuiTransitionValue: .225s;
-      --zuiEase: var(--zuiTransitionValue) ease;
+      --zui-transition-value: .225s;
+      --zui-ease: var(--zui-transition-value) ease;
       /* RADIUS */
-      --zuiRadius: .25rem;
-      --zuiCircle: 200vmax;
+      --zui-radius: .25rem;
+      --zui-circle: 200vmax;
       /* PADDING */
-      --zuiPaddingXxs: .25rem;
-      --zuiPaddingXs: .5rem;
-      --zuiPaddingSm: .75rem;
-      --zuiPadding: 1.25rem;
-      --zuiPaddingXl: 1.75rem;
+      --zui-padding-xxs: .25rem;
+      --zui-padding-xs: .5rem;
+      --zui-padding-sm: .75rem;
+      --zui-padding: 1.25rem;
+      --zui-padding-xl: 1.75rem;
       /* BORDER */
       --zuiBorderThickness: 1px;
     } 

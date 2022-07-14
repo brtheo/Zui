@@ -3,26 +3,26 @@ import { userSelectNone } from "../../shared/styles";
 
 export const styles = css`
 :host {
-  --zuiSelectWidth: var(--useZuiSelectWidth, max-content);
-  --zuiSelectDropableWidth: var(--useZuiSelectWidth, -webkit-fill-available);
+  --zui-select-width: var(--use-zui-select-width, max-content);
+  --zui-select-dropable-width: var(--use-zui-select-width, -webkit-fill-available);
 }
 :host * {
   ${userSelectNone};
 }
 :host(:not([multiple])) ::slotted(zui-option) {
-  --useZuiRadius: var(--zuiCircle);
-  --useZuiIconSvgSize: .60rem;
-  --zuiCheckboxThickness: 2px;
-  --zuiCheckboxFillColor: transparent;
-  --zuiIconColor: var(--zuiAccentColor);
+  --use-zui-radius: var(--zui-circle);
+  --use-zui-icon-svg-size: .60rem;
+  --zui-checkbox-thickness: 2px;
+  --zui-checkbox-fill-color: transparent;
+  --zui-icon-color: var(--zui-accent-color);
   ${userSelectNone};
-  /* --zuiCheckboxAccentColor: #232323; */
+  /* --zui-checkbox-accent-color: #232323; */
 }
 
 :host ::slotted(zui-option) {
   position: relative;
-  margin: var(--zuiPaddingXs);
-  --zuiCheckboxSize: 1rem;
+  margin: var(--zui-padding-xs);
+  --zui-checkbox-size: 1rem;
 }
 /* :host ::slotted(zui-option:nth-child(even))::after {
   content:'';
@@ -32,13 +32,13 @@ export const styles = css`
   float:left;
   background-color: #23232368;
   z-index: 1;
-  padding: calc(var(--zuiPaddingXs)*2);
+  padding: calc(var(--zui-padding-xs)*2);
   transform: translate(-50%);
-  left: var(--zuiSelectDropableWidth, 50%);
+  left: var(--zui-select-dropable-width, 50%);
   transform-origin:center center;
 
 } */
 zui-dropdown {
-  --useZuiDropdownWidth: var(--zuiSelectWidth);
+  --use-zui-dropdown-width: var(--zui-select-width);
 }
 `
